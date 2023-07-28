@@ -53,6 +53,20 @@ VALUES
     '2008',
     '1',
     150
+  ),
+  (
+    'Titanique',
+    'Jean Cameron',
+    '1997',
+    '1',
+    194
+  ),
+  (
+    'Le Parc Jurassique',
+    'Stephane Spielberg',
+    '1993',
+    '1',
+    128
   );
 
 DROP TABLE IF EXISTS users;
@@ -110,4 +124,48 @@ VALUES
     'johanna.martino@example.com',
     'Milan',
     'Spanish'
+  ),
+  (
+    'Luc',
+    'Courtleciel',
+    'luc.courtleciel@alliance_rebelle.com',
+    'Tatooine',
+    'Basic'
+  ),
+  (
+    'Elliane',
+    'Sattler',
+    'elliane.sattler@departement_paleobotanique.com',
+    'Milwookee',
+    'François'
   );
+
+DROP TABLE IF EXISTS boat;
+
+CREATE TABLE boat (
+  id int primary key NOT NULL AUTO_INCREMENT,
+  nameBoat varchar(255) NOT NULL,
+  lenght INT NOT NULL,
+  weightBoat INT NOT NULL,
+  year varchar(255) NOT NULL,
+  captain varchar(255) NULL,
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
+
+INSERT INTO
+  boat (nameBoat, lenght, weightBoat, year)
+VALUES
+  (
+    'Titanic',
+    268,
+    52250,
+    '1909',
+    "Captain Smith",
+  ),
+  (
+    'Lusitania',
+    240,
+    31500,
+    '1904',
+    "Captain Turner",
+  ),
+  
