@@ -1,8 +1,24 @@
 const database = require("./database");
 
 const getMovies = (req, res) => {
+  let sql = "SELECT * FROM movies";
+  const sqlValues = [];
+
+  if(req.query.max_duration != null) {
+    sql += " WHERE duration <= ?";
+    sqlValues.push(req.query.max_duration);
+
+    if(req.query.color != null) {
+          sql += " AND color = ?";
+          sqlValues.push(req.query.color);
+        }
+  } else if (req.query.color != null) {
+    sql += " WHERE color = ?";
+    sqlValues.push(req.query.color);
+  }
+  
   database
-    .query("select * from movies")
+    .query(sql, sqlValues)
     .then(([poulet]) => {
       res.json(poulet);
     })
@@ -11,6 +27,18 @@ const getMovies = (req, res) => {
       res.status(500).send("Error retrieving data from database Movies");
     });
 };
+// Sauvegarde de ma fonction de départ :
+// const getMovies = (req, res) => {
+//   database
+//     .query("SELECT * FROM movies")
+//     .then(([poulet]) => {
+//       res.json(poulet);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       res.status(500).send("Error retrieving data from database Movies");
+//     });
+// };
 
 const getMovieById = (req, res) => {
   const id = parseInt(req.params.id);
