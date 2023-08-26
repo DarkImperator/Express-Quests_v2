@@ -75,7 +75,7 @@ const getUsersById = (req, res) => {
 };
 
 const addUser = (req, res) => {
-  const { firstname, lastname, email, city, language, hashedPassword} = req.body;
+  const { firstname, lastname, email, city, language, hashedPassword } = req.body;
 
   database
     .query("INSERT INTO users (firstname, lastname, email, city, language, hashedPassword) VALUES (?,?,?,?,?,?)",
