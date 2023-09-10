@@ -129,6 +129,7 @@ const deleteUser = (req, res) => {
 
 const getUserByEmailWithPasswordAndPassToNext  = (req, res, next) => {
   const { email } = req.body;
+  // const email = req.body.email; // Autre possibilite de notation
 
   database
     .query("select * from users where email = ?", [email])
@@ -147,10 +148,6 @@ const getUserByEmailWithPasswordAndPassToNext  = (req, res, next) => {
 
 };
 
-// const verifyPassword = (req, res) => {
-//   res.send(req.user);
-// }
-
 module.exports = {
   getUsers,
   getUsersById,
@@ -158,5 +155,4 @@ module.exports = {
   updateUser,
   deleteUser,
   getUserByEmailWithPasswordAndPassToNext,
-  // verifyPassword,
 };
